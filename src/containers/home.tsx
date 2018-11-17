@@ -18,7 +18,7 @@ class Name extends Component<Props, State> {
   }
 
   render() {
-    return <div>Component</div>;
+    return <div>Home</div>;
   }
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./containers/home";
-import Login from "./containers/login";
+import Login from "./containers/login"
+import Dashboard from "./containers/dashboard";
 
 export default class App extends Component {
   private routes = [
@@ -13,6 +14,11 @@ export default class App extends Component {
     {
       path: "/login",
       component: Login,
+      exact: true
+    },
+    {
+      path: "/dashboard",
+      component: Dashboard,
       exact: true
     }
   ];

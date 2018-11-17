@@ -57,7 +57,7 @@ class PatientSearch extends Component<Props, State> {
           </Row>
           <Row>Lorem ipsum ....</Row>
         </Col>
-        <Col span={4} />
+        <Col span={4}>{camper.checked_in}</Col>
       </Row>
     );
   };

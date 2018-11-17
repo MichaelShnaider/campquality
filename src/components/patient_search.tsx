@@ -29,9 +29,9 @@ class PatientSearch extends Component<Props, State> {
 
   updateSearch = e => {
     const searchResult: CamperType[] = [];
-    const search = e.target.value;
+    const search = e.target.value.toLowerCase();
     for (const camper of this.state.campers) {
-      if (camper.name.match(search)) {
+      if (camper.name.toLowerCase().indexOf(search) !== -1) {
         searchResult.push(camper);
       }
     }
@@ -55,6 +55,7 @@ class PatientSearch extends Component<Props, State> {
           </Row>
           <Row>Lorem ipsum ....</Row>
         </Col>
+        <Col span={4} />
       </Row>
     );
   };

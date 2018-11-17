@@ -11,7 +11,6 @@ type DispatchProps = {};
 type Props = StateProps & DispatchProps & OwnProps;
 type State = {
   search: string;
-  campers: { name: string }[];
   searchResult: { name: string }[];
 };
 
@@ -20,18 +19,19 @@ class PatientSearch extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    console.log("ear;y", props);
     this.state = {
       search: "",
-      searchResult: data,
-      campers: data
+      searchResult: props.camperData
     };
   }
 
   updateSearch = e => {
     const searchResult: CamperType[] = [];
     const search = e.target.value.toLowerCase();
-    for (const camper of this.state.campers) {
-      if (camper.name.toLowerCase().indexOf(search) !== -1) {
+    for (const camper of this.props.camperData) {
+      const fullName = `${camper.first_name} ${camper.last_name}`;
+      if (fullName.toLowerCase().indexOf(search) !== -1) {
         searchResult.push(camper);
       }
     }
@@ -45,13 +45,15 @@ class PatientSearch extends Component<Props, State> {
       <Row style={{ width: "100%" }}>
         <Col span={8}>
           <img
-            src="https://i.pinimg.com/236x/87/82/fc/8782fc8220561fe4a7dddb07aa15525a--face-reference-female-faces.jpg"
-            style={{ height: "100px", borderRadius: "50%" }}
+            src={camper.img}
+            style={{ height: "75px", width: "75px", borderRadius: "50%" }}
           />
         </Col>
         <Col span={12}>
           <Row style={{ width: "100%" }}>
-            <h3>{camper.name}</h3>
+            <h3>
+              {camper.first_name} {camper.last_name}
+            </h3>
           </Row>
           <Row>Lorem ipsum ....</Row>
         </Col>
@@ -84,7 +86,7 @@ class PatientSearch extends Component<Props, State> {
           style={{
             border: "1px solid #e8e8e8",
             borderRadius: "2%",
-            padding: "0 10px 15px 10px"
+            padding: "10px 10px 15px 10px"
           }}
         >
           <TextField
@@ -118,7 +120,7 @@ const data = [
   }
 ];
 function mapStateToProps(state: RootState): StateProps {
-  return {};
+  return { camperData: state.campers };
 }
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {

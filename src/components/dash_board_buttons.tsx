@@ -17,6 +17,7 @@ const styles = theme => ({
     },
     icon: {
         margin: theme.spacing.unit * 2,
+        marginBottom: 0
     },
     iconHover: {
         margin: theme.spacing.unit * 2,
@@ -42,18 +43,25 @@ class DashBoardButtons extends React.Component {
 
                 <Grid container spacing={24} alignContent="center">
                     <Grid item xs={12}>
+
                         <Link to="/check-in">
                             <Icon className={classNames(classes.icon, 'fas fa-users')} style={{ fontSize: "75px", width: "94px", color: "#DE8265" }} />
+                            <br />
+                            <span style={{ color: "#DE8265" }}>Camper Check-in</span>
                         </Link>
                     </Grid>
                     <Grid item xs={6} sm={6}>
                         <Link to="/drug-administration">
                             <Icon className={classNames(classes.icon, 'fas fa-prescription-bottle-alt')} style={{ fontSize: "75px", color: "#E5A752" }} />
+                            <br />
+                            <span style={{ color: "#E5A752" }}>Drug Administration</span>
                         </Link>
                     </Grid>
                     <Grid item xs={6} sm={6}>
                         <Link to="/summary">
                             <Icon className={classNames(classes.icon, 'fas fa-clipboard-list')} style={{ fontSize: "75px", color: "#449990" }} />
+                            <br />
+                            <span style={{ color: "#449990" }}>Patient Summary</span>
                         </Link>
                     </Grid>
                 </Grid>

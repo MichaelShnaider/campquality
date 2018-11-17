@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { RootState } from "../reducers";
 import TextField from "@material-ui/core/TextField";
 import { List, Col, Row } from "antd";
+import { loadCSS } from "fg-loadcss/src/loadCSS";
+import { classNames } from "classNames";
+import { Icon } from "antd";
 
 type OwnProps = {};
 type StateProps = {};
@@ -26,8 +29,15 @@ class PatientSearch extends Component<Props, State> {
     };
   }
 
+  componentDidMount() {
+    loadCSS(
+      "https://use.fontawesome.com/releases/v5.1.0/css/all.css",
+      document.querySelector("#insertion-point-jss")
+    );
+  }
+
   updateSearch = e => {
-    const searchResult: CamperType[] = [];
+    let searchResult: CamperType[] = [];
     const search = e.target.value.toLowerCase();
     for (const camper of this.props.camperData) {
       const fullName = `${camper.first_name} ${camper.last_name}`;
@@ -35,7 +45,10 @@ class PatientSearch extends Component<Props, State> {
         searchResult.push(camper);
       }
     }
-    console.log(searchResult);
+    // console.log(searchResult);
+    // searchResult.sort((a, b) => {
+    //   return false;
+    // });
     this.setState({ searchResult });
   };
 
@@ -57,7 +70,27 @@ class PatientSearch extends Component<Props, State> {
           </Row>
           <Row>Lorem ipsum ....</Row>
         </Col>
-        <Col span={4}>{camper.checked_in}</Col>
+        <Col span={4}>
+          {camper.checked_in && (
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              style={{
+                fontSize: "30px",
+                padding: "15px"
+              }}
+              twoToneColor="#41e04b"
+            />
+          )}
+          {!camper.checked_in && (
+            <Icon
+              type="right"
+              // theme="twoTone"
+              style={{ fontSize: "30px", padding: "15px" }}
+              // twoToneColor="#41e04b"
+            />
+          )}
+        </Col>
       </Row>
     );
   };

@@ -1,16 +1,15 @@
 export const camperData = [
   {
     id: 0,
-    checked_in: false,
+    checked_in: true,
     img: "http://www.joewigdahl.com/wp-content/uploads/MG_2407-906x640.jpg",
     first_name: "Joan",
     last_name: "Doe",
     date_of_birth: "2018-05-02T00:00:00.000Z",
     height_cm: "164",
     weight_lbs: "100",
-    epinherine_injector: true,
-    allergies_dietary_restruction: {
-      "epinephrine injector": false,
+    allergies_dietary_restriction: {
+      epinephrine_injector: false,
       anaphylaxis: "Anaphyatic reaction on Dec 10, 2017, mild",
       allergies: [
         {
@@ -206,9 +205,8 @@ export const camperData = [
     date_of_birth: "2018-05-02T00:00:00.000Z",
     height_cm: "164",
     weight_lbs: "100",
-    epinherine_injector: true,
-    allergies_dietary_restruction: {
-      "epinephrine injector": false,
+    allergies_dietary_restriction: {
+      epinephrine_injector: false,
       anaphylaxis: "Anaphyatic reaction on Dec 10, 2017, mild",
       allergies: [
         {

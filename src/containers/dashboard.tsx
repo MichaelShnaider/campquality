@@ -38,7 +38,7 @@ class Dashboard extends Component<Props, State> {
                 <Grid container justify="center" style={{ paddingTop: "40px" }}>
                     <img
                         src="http://campquality.org/wordpress/wp-content/themes/campquality2016/img/logo_camp-quality.png"
-                        style={{ height: "150px", marginBottom: "80px" }}
+                        style={{ height: "150px", marginBottom: "100px" }}
                     />
                 </Grid>
                 <DashBoardButtons>

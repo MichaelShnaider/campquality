@@ -20,7 +20,7 @@ const styles = {
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 0
   },
 };
 
@@ -39,9 +39,9 @@ function ButtonAppBar(props) {
              </Typography>
 
           <IconButton color="inherit" aria-label="Menu">
-            {/* <Link to="/dashboard"> */}
-            <MenuIcon />
-            {/* </Link> */}
+            <Link to="/dashboard" className="customLink">
+              <MenuIcon />
+            </Link>
           </IconButton>
         </Toolbar>
       </AppBar>

@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import { Z_BLOCK } from "zlib";
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -38,7 +39,9 @@ function ButtonAppBar(props) {
              </Typography>
 
           <IconButton color="inherit" aria-label="Menu">
+            {/* <Link to="/dashboard"> */}
             <MenuIcon />
+            {/* </Link> */}
           </IconButton>
         </Toolbar>
       </AppBar>

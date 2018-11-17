@@ -1,0 +1,11 @@
+{
+  "editor.tabCompletion": true,
+  "editor.snippetSuggestions": "top",
+  "editor.quickSuggestions": true,
+  "editor.formatOnSave": true,
+  "prettier.eslintIntegration": true,
+  "prettier.singleQuote": false,
+  "prettier.jsxSingleQuote": false,
+  "javascript.preferences.quoteStyle": "double",
+  "typescript.preferences.quoteStyle": "double"
+}

@@ -10,6 +10,7 @@ import thunk from "redux-thunk";
 import rootReducer from "../src/reducers";
 import App from "./app";
 
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const render = (Component: React.ComponentClass) => {

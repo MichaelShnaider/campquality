@@ -6,6 +6,7 @@ import Dashboard from "./containers/dashboard";
 import CheckIn from "./containers/check_in";
 import Summary from "./containers/summary";
 import DrugAdministration from "./containers/drug_administration";
+import CamperCheckIn from "./containers/camper_check_in";
 
 export default class App extends Component {
   private routes = [
@@ -37,6 +38,11 @@ export default class App extends Component {
     {
       path: "/drug-administration",
       component: DrugAdministration,
+      exact: true
+    },
+    {
+      path: "/check-in/:camper_id",
+      component: CamperCheckIn,
       exact: true
     }
   ];

@@ -83,6 +83,7 @@ function Login(props) {
           variant="contained"
           color="primary"
           className={classes.submit}
+          onClick={() => (window.location.href = "/")}
         >
           Sign in
         </Button>

@@ -1,18 +1,36 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-class Home extends Component {
-  static defaultProps = {};
+import { bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
+import { RootState } from "../reducers";
+
+type OwnProps = {};
+type StateProps = {};
+type DispatchProps = {};
+type Props = StateProps & DispatchProps & OwnProps;
+type State = {};
+
+class Name extends Component<Props, State> {
+  public static defaultProps = {};
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
-    return (
-      <div>
-        <Button color="primary" variant="raised">
-          Primary
-        </Button>
-        Welcome home!
-      </div>
-    );
+    return <div>Component</div>;
   }
 }
 
-export default Home;
+function mapStateToProps(state: RootState): StateProps {
+  return {};
+}
+
+function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
+  return bindActionCreators({}, dispatch);
+}
+
+export default connect<StateProps, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Name);

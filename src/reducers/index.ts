@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import { testReducer } from "./test";
+import { camperReducer } from "./camperReducer";
 
 export type RootState = {
-  test: ReturnType<typeof testReducer>;
+  campers: ReturnType<typeof camperReducer>;
 };
 
 const rootReducer = combineReducers({
-  test: testReducer
+  campers: camperReducer
 });
 
 export default rootReducer;

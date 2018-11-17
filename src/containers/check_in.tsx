@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import PatientSearch from "../components/patient_search";
+import { RootState } from "../reducers";
 
 type OwnProps = {};
 type StateProps = {};
@@ -18,6 +19,7 @@ class CheckIn extends Component<Props, State> {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Camper Check-In</h1>
@@ -27,8 +29,8 @@ class CheckIn extends Component<Props, State> {
   }
 }
 
-function mapStateToProps(state: any): StateProps {
-  return {};
+function mapStateToProps(state: RootState): StateProps {
+  return { campData: state.campers };
 }
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {

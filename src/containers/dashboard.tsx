@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { bindActionCreators, Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
 import { RootState } from "../reducers";
 
 type OwnProps = {};
@@ -10,26 +10,27 @@ type Props = StateProps & DispatchProps & OwnProps;
 type State = {};
 
 class Dashboard extends Component<Props, State> {
-    public static defaultProps = {};
+  public static defaultProps = {};
 
-    constructor(props: Props) {
-        super(props);
-        this.state = {};
-    }
+  constructor(props: Props) {
+    super(props);
+    this.state = {};
+  }
 
-    render() {
-        return (
-            <div>DASHBOARD! BRO</div>
-        );
-    }
+  render() {
+    return <div>DASHBOARD! BRO</div>;
+  }
 }
 
 function mapStateToProps(state: RootState): StateProps {
-    return {};
+  return {};
 }
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
-    return bindActionCreators({}, dispatch);
+  return bindActionCreators({}, dispatch);
 }
 
-export default connect<StateProps, DispatchProps>(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect<StateProps, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);

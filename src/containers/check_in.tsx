@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
-import { RootState } from "../reducers";
+import PatientSearch from "../components/patient_search";
 
 type OwnProps = {};
 type StateProps = {};
@@ -9,7 +9,7 @@ type DispatchProps = {};
 type Props = StateProps & DispatchProps & OwnProps;
 type State = {};
 
-class Test extends Component<Props, State> {
+class CheckIn extends Component<Props, State> {
   public static defaultProps = {};
 
   constructor(props: Props) {
@@ -18,11 +18,16 @@ class Test extends Component<Props, State> {
   }
 
   render() {
-    return <div>Component</div>;
+    return (
+      <div>
+        <h1>Camper Check-In</h1>
+        <PatientSearch />
+      </div>
+    );
   }
 }
 
-function mapStateToProps(state: RootState): StateProps {
+function mapStateToProps(state: any): StateProps {
   return {};
 }
 
@@ -33,4 +38,4 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
 export default connect<StateProps, DispatchProps>(
   mapStateToProps,
   mapDispatchToProps
-)(Test);
+)(CheckIn);

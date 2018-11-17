@@ -1,0 +1,3 @@
+type CamperType = {
+  name: string;
+};

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./containers/home";
-import Login from "./containers/login"
+import Login from "./containers/login";
 import Dashboard from "./containers/dashboard";
+import CheckIn from "./containers/check_in";
 
 export default class App extends Component {
   private routes = [
@@ -19,6 +20,11 @@ export default class App extends Component {
     {
       path: "/dashboard",
       component: Dashboard,
+      exact: true
+    },
+    {
+      path: "/check-in",
+      component: CheckIn,
       exact: true
     }
   ];

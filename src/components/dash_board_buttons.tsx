@@ -47,10 +47,14 @@ class DashBoardButtons extends React.Component {
                         </Link>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                        <Icon className={classNames(classes.icon, 'fas fa-prescription-bottle-alt')} style={{ fontSize: "75px", color: "#E5A752" }} />
+                        <Link to="/drug-administration">
+                            <Icon className={classNames(classes.icon, 'fas fa-prescription-bottle-alt')} style={{ fontSize: "75px", color: "#E5A752" }} />
+                        </Link>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                        <Icon className={classNames(classes.icon, 'fas fa-clipboard-list')} style={{ fontSize: "75px", color: "#449990" }} />
+                        <Link to="/summary">
+                            <Icon className={classNames(classes.icon, 'fas fa-clipboard-list')} style={{ fontSize: "75px", color: "#449990" }} />
+                        </Link>
                     </Grid>
                 </Grid>
             </div >

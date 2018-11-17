@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from "../reducers";
+import ButtonAppBar from "../components/top_bar";
+import Grid from '@material-ui/core/Grid';
 
 type OwnProps = {};
 type StateProps = {};
@@ -19,7 +21,27 @@ class Dashboard extends Component<Props, State> {
 
     render() {
         return (
-            <div>DASHBOARD! BRO</div>
+
+            <div>
+                <ButtonAppBar>
+                </ButtonAppBar>
+                <div style={{
+                    display: "block",
+                    background: "yellow",
+                    fontFamily: "Arial",
+                    fontSize: "14px",
+                    padding: "4px"
+                }}>
+                    Announcements: Welcome to CampQuality Day 1!
+      </div>
+                <Grid container justify="center" style={{ paddingTop: "20px" }}>
+                    <img
+                        src="http://campquality.org/wordpress/wp-content/themes/campquality2016/img/logo_camp-quality.png"
+                        style={{ height: "150px", marginBottom: "30px" }}
+                    />
+                </Grid>
+            </div>
+
         );
     }
 }

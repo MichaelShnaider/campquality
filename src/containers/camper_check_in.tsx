@@ -71,6 +71,7 @@ const styles = theme => ({
 
 });
 
+
 class CamperCheckIn extends Component<Props, State> {
 
     handleChange = (name, idx) => event => {
@@ -103,6 +104,10 @@ class CamperCheckIn extends Component<Props, State> {
             camperData: this.state.camperData
         });
     };
+
+    updateCheckedIn = () => {
+
+    }
 
     public static defaultProps = {};
 
@@ -144,31 +149,34 @@ class CamperCheckIn extends Component<Props, State> {
                         onChange={this.handleChange('last_name')}
                         margin="normal"
                         variant="outlined"
+                        style={{
+                            marginBottom: "-15px"
+                        }}
                     />
 
-                    <RadioGroup
-                        name="gender"
-                        value={this.state.camperData.gender}
-                        onChange={this.handleChange('gender')}
-                        className={classes.gender}
-                    >
+                    <div>
                         <span style={{
                             position: "relative",
-                            width: "45px",
                             zIndex: "1000",
                             fontSize: "12px",
-                            display: "block",
                             background: "white",
                             color: "#767676",
-                            top: "-6px",
-                            left: "0px",
+                            top: "13px",
+                            left: "30px",
                             margin: "0px",
-                            padding: "0px"
+                            padding: "0px 4px"
                         }}> Gender</span>
-                        <FormControlLabel value="Female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="Male" control={<Radio />} label="Male" />
-                        <FormControlLabel value="Other" control={<Radio />} label="Other" />
-                    </RadioGroup>
+                        <RadioGroup
+                            name="gender"
+                            value={this.state.camperData.gender}
+                            onChange={this.handleChange('gender')}
+                            className={classes.gender}
+                        >
+                            <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                            <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                            <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                        </RadioGroup>
+                    </div>
 
                     <TextField
                         id="outlined-name"
@@ -189,43 +197,34 @@ class CamperCheckIn extends Component<Props, State> {
                         variant="outlined"
                     />
                     <br /><br />
-                    <Typography variant="h6" color="inherit" className={classes.subtitle}>
+                    <Typography variant="h6" color="inherit" className={classes.subtitle} >
                         Allergies
                     </Typography>
 
-                    <RadioGroup
-                        name="epinephrine_injector"
-                        value={this.state.camperData.allergies_dietary_restriction.epinephrine_injector.toString()}
-                        onChange={this.handleChange('allergies_dietary_restriction.epinephrine_injector')}
-                        className={classes.gender}
-                    >
+                    <div style={{ marginTop: "-15px" }}>
                         <span style={{
                             position: "relative",
-                            width: "120px",
                             zIndex: "1000",
                             fontSize: "12px",
-                            display: "block",
                             background: "white",
                             color: "#767676",
-                            top: "-6px",
-                            left: "0px",
+                            top: "13px",
+                            left: "30px",
                             margin: "0px",
-                            padding: "0px"
+                            padding: "0px 4px"
                         }}> Epinephrine Injector</span>
-                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                        <FormControlLabel value="false" control={<Radio />} label="No" />
-                    </RadioGroup>
+                        <RadioGroup
+                            name="epinephrine_injector"
+                            value={this.state.camperData.allergies_dietary_restriction.epinephrine_injector.toString()}
+                            onChange={this.handleChange('allergies_dietary_restriction.epinephrine_injector')}
+                            className={classes.gender}
+                        >
 
+                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </div>
 
-                    <TextField
-                        id="outlined-name"
-                        label="Epinephrine Injector"
-                        value={this.state.camperData.allergies_dietary_restriction.epinephrine_injector}
-                        className={classes.textField}
-                        onChange={this.handleChange('allergies_dietary_restriction.epinephrine_injector')}
-                        margin="normal"
-                        variant="outlined"
-                    />
                     <TextField
                         id="outlined-name"
                         label="Anaphylaxis"
@@ -375,28 +374,32 @@ class CamperCheckIn extends Component<Props, State> {
                                         margin="normal"
                                         variant="outlined"
                                     />
-                                    <RadioGroup
-                                        name="vaccinated"
-                                        value={this.state.camperData.Immunizations.vaccination[index].vaccinated.toString()}
-                                        onChange={this.handleChange2(this.state.camperData.Immunizations.vaccination[index], 'vaccinated')}
-                                        className={classes.gender}
-                                    >
+
+
+
+                                    <div style={{ marginTop: "-15px" }}>
                                         <span style={{
                                             position: "relative",
-                                            width: "120px",
                                             zIndex: "1000",
                                             fontSize: "12px",
-                                            display: "block",
                                             background: "white",
                                             color: "#767676",
-                                            top: "-6px",
-                                            left: "0px",
+                                            top: "13px",
+                                            left: "30px",
                                             margin: "0px",
-                                            padding: "0px"
+                                            padding: "0px 4px"
                                         }}> Vaccinated</span>
-                                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                                        <FormControlLabel value="false" control={<Radio />} label="No" />
-                                    </RadioGroup>
+                                        <RadioGroup
+                                            name="vaccinated"
+                                            value={this.state.camperData.Immunizations.vaccination[index].vaccinated.toString()}
+                                            onChange={this.handleChange2(this.state.camperData.Immunizations.vaccination[index], 'vaccinated')}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
+
                                     <TextField
                                         id="outlined-name"
                                         label="Date"
@@ -443,28 +446,30 @@ class CamperCheckIn extends Component<Props, State> {
                                         margin="normal"
                                         variant="outlined"
                                     />
-                                    <RadioGroup
-                                        name="diagnosed"
-                                        value={this.state.camperData.health_history.conditions[index].experience_experienced.toString()}
-                                        onChange={this.handleChange2(this.state.camperData.health_history.conditions[index], 'experience_experienced')}
-                                        className={classes.gender}
-                                    >
+
+                                    <div style={{ marginTop: "-15px" }}>
                                         <span style={{
                                             position: "relative",
-                                            width: "65px",
                                             zIndex: "1000",
                                             fontSize: "12px",
-                                            display: "block",
                                             background: "white",
                                             color: "#767676",
-                                            top: "-6px",
-                                            left: "0px",
+                                            top: "13px",
+                                            left: "30px",
                                             margin: "0px",
-                                            padding: "0px"
+                                            padding: "0px 4px"
                                         }}> Diagnosed</span>
-                                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                                        <FormControlLabel value="false" control={<Radio />} label="No" />
-                                    </RadioGroup>
+                                        <RadioGroup
+                                            name="diagnosed"
+                                            value={this.state.camperData.health_history.conditions[index].experience_experienced.toString()}
+                                            onChange={this.handleChange2(this.state.camperData.health_history.conditions[index], 'experience_experienced')}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
+
                                     <TextField
                                         id="outlined-name"
                                         label="Details"
@@ -482,28 +487,30 @@ class CamperCheckIn extends Component<Props, State> {
                     <div className={classes.allergies} >
                         Mental Health
                         <br /><br />
-                        <RadioGroup
-                            name="Mental Health"
-                            value={this.state.camperData.health_history.other_mental_health_issues.experience_experienced.toString()}
-                            onChange={this.handleChange('health_history.other_mental_health_issues.experience_experienced')}
-                            className={classes.gender}
-                        >
+
+                        <div style={{ marginTop: "-15px" }}>
                             <span style={{
                                 position: "relative",
-                                width: "65px",
                                 zIndex: "1000",
                                 fontSize: "12px",
-                                display: "block",
                                 background: "white",
                                 color: "#767676",
-                                top: "-6px",
-                                left: "0px",
+                                top: "13px",
+                                left: "30px",
                                 margin: "0px",
-                                padding: "0px"
+                                padding: "0px 4px"
                             }}> Diagnosed</span>
-                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="false" control={<Radio />} label="No" />
-                        </RadioGroup>
+                            <RadioGroup
+                                name="Mental Health"
+                                value={this.state.camperData.health_history.other_mental_health_issues.experience_experienced.toString()}
+                                onChange={this.handleChange('health_history.other_mental_health_issues.experience_experienced')}
+                                className={classes.gender}
+                            >
+                                <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                <FormControlLabel value="false" control={<Radio />} label="No" />
+                            </RadioGroup>
+                        </div>
+
                         <TextField
                             id="outlined-name"
                             label="Details"
@@ -533,28 +540,30 @@ class CamperCheckIn extends Component<Props, State> {
                                         margin="normal"
                                         variant="outlined"
                                     />
-                                    <RadioGroup
-                                        name="diagnosed"
-                                        value={this.state.camperData.health_history.disease_history[index].experience_experienced.toString()}
-                                        onChange={this.handleChange2(this.state.camperData.health_history.disease_history[index], 'experience_experienced')}
-                                        className={classes.gender}
-                                    >
+
+                                    <div style={{ marginTop: "-15px" }}>
                                         <span style={{
                                             position: "relative",
-                                            width: "65px",
                                             zIndex: "1000",
                                             fontSize: "12px",
-                                            display: "block",
                                             background: "white",
                                             color: "#767676",
-                                            top: "-6px",
-                                            left: "0px",
+                                            top: "13px",
+                                            left: "30px",
                                             margin: "0px",
-                                            padding: "0px"
+                                            padding: "0px 4px"
                                         }}> Diagnosed</span>
-                                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                                        <FormControlLabel value="false" control={<Radio />} label="No" />
-                                    </RadioGroup>
+                                        <RadioGroup
+                                            name="diagnosed"
+                                            value={this.state.camperData.health_history.disease_history[index].experience_experienced.toString()}
+                                            onChange={this.handleChange2(this.state.camperData.health_history.disease_history[index], 'experience_experienced')}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
+
                                     <TextField
                                         id="outlined-name"
                                         label="Details"
@@ -695,7 +704,7 @@ class CamperCheckIn extends Component<Props, State> {
                     marginBottom: "30px"
                 }}>
                     {!this.state.camperData.checked_in &&
-                        <Button variant="contained" size="large" style={{ color: "white", backgroundColor: "#339933", margin: "20px" }}>
+                        <Button variant="contained" onClick={this.updateCheckedIn()} size="large" style={{ color: "white", backgroundColor: "#339933", margin: "20px" }}>
                             Check In
     </Button>
                     }
@@ -707,8 +716,8 @@ class CamperCheckIn extends Component<Props, State> {
 
                 </div>
 
-            </div>
-    }
+            </div >
+                    }
 
 }
 

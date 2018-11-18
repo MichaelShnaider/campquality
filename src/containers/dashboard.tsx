@@ -41,6 +41,7 @@ class Dashboard extends Component<Props, State> {
                         style={{ height: "150px", marginBottom: "100px" }}
                     />
                 </Grid>
+                <br /><br />
                 <DashBoardButtons>
                 </DashBoardButtons>
             </div>

@@ -106,7 +106,12 @@ class CamperCheckIn extends Component<Props, State> {
     };
 
     updateCheckedIn = () => {
-
+        this.state.camperData.checked_in = true
+        this.setState({
+            camperData: this.state.camperData
+        });
+        this.props.changeCamperData(this.state.camperData);
+        this.props.history.push('/check-in');
     }
 
     public static defaultProps = {};
@@ -704,7 +709,7 @@ class CamperCheckIn extends Component<Props, State> {
                     marginBottom: "30px"
                 }}>
                     {!this.state.camperData.checked_in &&
-                        <Button variant="contained" onClick={this.updateCheckedIn()} size="large" style={{ color: "white", backgroundColor: "#339933", margin: "20px" }}>
+                        <Button variant="contained" onClick={this.updateCheckedIn} size="large" style={{ color: "white", backgroundColor: "#339933", margin: "20px" }}>
                             Check In
     </Button>
                     }

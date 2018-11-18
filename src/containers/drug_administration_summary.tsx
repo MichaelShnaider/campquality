@@ -68,16 +68,43 @@ class DrugAdministrationSummary extends Component<Props, State> {
       <Row style={{width: "100%"}}>
 
         <Col span={12}>
-          <Row style={{width: "100%", height: "100%", marginTop: "23px"}}>
-            <h3>
-              {medication.name}
-            </h3>
-            <h3>
-              {medication.dose}
-            </h3>
-            <h3>
-              {medication.details}
-            </h3>
+          <Row style={{width: "100%", height: "100%", marginTop: "10px"}}>
+            <Row style={{width: "100%", height: "100%", marginTop: "2px"}}>
+              <Col span={12}>
+                <Typography align="left" variant="h6" color="inherit">
+                  Name:
+                </Typography>
+              </Col>
+              <Col span={12}>
+                <Typography align="center" variant="subtitle1" color="inherit">
+                  {medication.name}
+                </Typography>
+              </Col>
+            </Row>
+            <Row style={{width: "100%", height: "100%", marginTop: "2px"}}>
+              <Col span={12}>
+                <Typography align="left" variant="h6" color="inherit">
+                  Dosage:
+                </Typography>
+              </Col>
+              <Col span={12}>
+                <Typography align="center" variant="subtitle1" color="inherit">
+                  {medication.dose}
+                </Typography>
+              </Col>
+            </Row>
+            <Row style={{width: "100%", height: "100%", marginTop: "2px"}}>
+              <Col span={12}>
+                <Typography align="left" variant="h6" color="inherit">
+                  Drug Details:
+                </Typography>
+              </Col>
+              <Col span={12}>
+                <Typography align="center" variant="subtitle1" color="inherit">
+                  {medication.details}
+                </Typography>
+              </Col>
+            </Row>
 
           </Row>
         </Col>

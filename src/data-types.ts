@@ -1,3 +1,5 @@
+import { TimesOfDayEnum } from "./constants";
+
 type CamperType = {
   first_name: string;
   last_name: string;
@@ -10,4 +12,11 @@ type CamperType = {
     dinner: boolean;
     bedtime: boolean;
   };
+};
+
+export type MedicineType = {
+  details: string;
+  dose: string;
+  name: string;
+  schedule: { is_taken: boolean; time: TimesOfDayEnum }[];
 };

@@ -7,7 +7,7 @@ type State = {
 };
 
 function checkLocalStorage() {
-  const storedData = localStorage.getItem('camperData');
+  const storedData = localStorage.getItem("camperData");
   if (storedData) {
     return JSON.parse(storedData);
   } else {
@@ -16,7 +16,7 @@ function checkLocalStorage() {
 }
 
 function saveToLocalStorage(data) {
-  localStorage.setItem('camperData', JSON.stringify(data));
+  localStorage.setItem("camperData", JSON.stringify(data));
 }
 
 const initial: State = checkLocalStorage();
@@ -27,12 +27,12 @@ type ActionType = {
 
 export const camperReducer = (state = initial, action: ActionType) => {
   const newState = produce(state, draft => {
-
     switch (action.type) {
       case CamperDataEnum.DEFAULT: {
         return;
       }
       case CamperDataEnum.CHANGE_CAMPER: {
+        console.log("UPDATED IN REDUCER");
         draft[action.payload.id] = action.payload;
       }
       default: {

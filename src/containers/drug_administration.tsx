@@ -82,7 +82,10 @@ class DrugAdministration extends Component<Props, State> {
           </Select>
         </FormControl>
 
-        <PatientSearch parentPage={SearchParentPageEnum.DRUG_ADMIN} />
+        <PatientSearch
+          parentPage={SearchParentPageEnum.DRUG_ADMIN}
+          curTimeOfDay={this.state.curTimeOfDay}
+        />
       </div>
     );
   }

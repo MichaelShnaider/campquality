@@ -9,10 +9,11 @@ import { classNames } from "classNames";
 import { Icon } from "antd";
 import { produce } from "immer";
 import { Link } from "react-router-dom";
-import { SearchParentPageEnum } from "../constants";
+import { SearchParentPageEnum, TimesOfDayEnum } from "../constants";
 
 type OwnProps = {
   parentPage: SearchParentPageEnum;
+  curTimeOfDay: TimesOfDayEnum;
 };
 type StateProps = {
   camperData: CamperType[];
@@ -31,7 +32,7 @@ class PatientSearch extends Component<Props, State> {
     super(props);
     const camperData = produce(props.camperData, draft => {
       draft.sort((a: CamperType, b: CamperType) => {
-        return a.checked_in ? 1 : -1;
+        return this.sortData(draft);
       });
       return;
     });
@@ -40,6 +41,33 @@ class PatientSearch extends Component<Props, State> {
       searchResult: camperData
     };
   }
+
+  sortData = (arr: any[]) => {
+    arr.sort((a, b) => {
+      if (this.props.parentPage === SearchParentPageEnum.CHECK_IN) {
+        return a.checked_in ? 1 : -1;
+      } else if (this.props.parentPage === SearchParentPageEnum.DRUG_ADMIN) {
+        return this.sortByTimeOfDay(a, b);
+      }
+    });
+  };
+
+  sortByTimeOfDay = (a, b) => {
+    if (this.props.curTimeOfDay === TimesOfDayEnum.BREAKFAST) {
+      return a.medication_given.breakfast ? 1 : -1;
+    }
+    if (this.props.curTimeOfDay === TimesOfDayEnum.LUNCH) {
+      return a.medication_given.lunch ? 1 : -1;
+    }
+
+    if (this.props.curTimeOfDay === TimesOfDayEnum.DINNER) {
+      return a.medication_given.dinner ? 1 : -1;
+    }
+
+    if (this.props.curTimeOfDay === TimesOfDayEnum.BEDTIME) {
+      return a.medication_given.bedtime ? 1 : -1;
+    }
+  };
 
   componentDidMount() {
     loadCSS(
@@ -57,11 +85,7 @@ class PatientSearch extends Component<Props, State> {
         searchResult.push(camper);
       }
     }
-    console.log("unsorted: ", searchResult);
-    searchResult.sort((a, b) => {
-      return a.checked_in ? 1 : -1;
-    });
-    console.log("sorted: ", searchResult);
+    this.sortData(searchResult);
     this.setState({ searchResult });
   };
 
@@ -92,22 +116,85 @@ class PatientSearch extends Component<Props, State> {
       );
     } else {
       // if (this.props.parentPage === SearchParentPageEnum.DRUG_ADMIN) {
-      if (!camper.medication_given.breakfast) {
-        return (
-          <Icon
-            type="check-circle"
-            theme="twoTone"
-            style={{
-              fontSize: "30px",
-              padding: "15px"
-            }}
-            twoToneColor="#41e04b"
-          />
-        );
+      if (this.props.curTimeOfDay === TimesOfDayEnum.BREAKFAST) {
+        if (camper.medication_given.breakfast) {
+          return (
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              style={{
+                fontSize: "30px",
+                padding: "15px"
+              }}
+              twoToneColor="#41e04b"
+            />
+          );
+        } else {
+          return (
+            <Icon type="right" style={{ fontSize: "30px", padding: "15px" }} />
+          );
+        }
       }
-      return (
-        <Icon type="right" style={{ fontSize: "30px", padding: "15px" }} />
-      );
+
+      if (this.props.curTimeOfDay === TimesOfDayEnum.LUNCH) {
+        if (camper.medication_given.lunch) {
+          return (
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              style={{
+                fontSize: "30px",
+                padding: "15px"
+              }}
+              twoToneColor="#41e04b"
+            />
+          );
+        } else {
+          return (
+            <Icon type="right" style={{ fontSize: "30px", padding: "15px" }} />
+          );
+        }
+      }
+
+      if (this.props.curTimeOfDay === TimesOfDayEnum.DINNER) {
+        if (camper.medication_given.dinner) {
+          return (
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              style={{
+                fontSize: "30px",
+                padding: "15px"
+              }}
+              twoToneColor="#41e04b"
+            />
+          );
+        } else {
+          return (
+            <Icon type="right" style={{ fontSize: "30px", padding: "15px" }} />
+          );
+        }
+      }
+
+      if (this.props.curTimeOfDay === TimesOfDayEnum.BEDTIME) {
+        if (camper.medication_given.bedtime) {
+          return (
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              style={{
+                fontSize: "30px",
+                padding: "15px"
+              }}
+              twoToneColor="#41e04b"
+            />
+          );
+        } else {
+          return (
+            <Icon type="right" style={{ fontSize: "30px", padding: "15px" }} />
+          );
+        }
+      }
     }
     /*
     <Col span={4}>

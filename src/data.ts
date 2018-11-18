@@ -1,3 +1,5 @@
+import { TimesOfDayEnum } from "./constants";
+
 export const camperData = [
   {
     id: 0,
@@ -42,19 +44,25 @@ export const camperData = [
           name: "Estrace",
           dose: ".25 mg",
           details: "Estrogen therapy",
-          schedule: ["Bedtime"]
+          schedule: [{ time: TimesOfDayEnum.BEDTIME, is_taken: false }]
         },
         {
           name: "Cortef",
           dose: "7.5 / 5",
           details: "Adrenal insufficiency",
-          schedule: ["Breakfast", "Dinner"]
+          schedule: [
+            { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
+            { time: TimesOfDayEnum.DINNER, is_taken: false }
+          ]
         },
         {
           name: "Ddavp",
           dose: "25/50",
           details: "Diabetes insipidus",
-          schedule: ["Breakfast", "Bedtime"]
+          schedule: [
+            { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
+            { time: TimesOfDayEnum.BEDTIME, is_taken: false }
+          ]
         }
       ],
       medications_non_camp: [
@@ -246,19 +254,25 @@ export const camperData = [
           name: "Estrace",
           dose: ".25 mg",
           details: "Estrogen therapy",
-          schedule: ["Bedtime"]
+          schedule: [{ time: TimesOfDayEnum.BEDTIME, is_taken: false }]
         },
         {
           name: "Cortef",
           dose: "7.5 / 5",
           details: "Adrenal insufficiency",
-          schedule: ["Breakfast", "Dinner"]
+          schedule: [
+            { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
+            { time: TimesOfDayEnum.DINNER, is_taken: false }
+          ]
         },
         {
           name: "Ddavp",
           dose: "25/50",
           details: "Diabetes insipidus",
-          schedule: ["Breakfast", "Bedtime"]
+          schedule: [
+            { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
+            { time: TimesOfDayEnum.BEDTIME, is_taken: false }
+          ]
         }
       ],
       medications_non_camp: [
@@ -418,7 +432,7 @@ export const camperData = [
       breakfast: true,
       lunch: false,
       dinner: false,
-      bedtime: true
+      bedtime: false
     },
     height_cm: "164",
     weight_lbs: "100",
@@ -449,19 +463,25 @@ export const camperData = [
           name: "Estrace",
           dose: ".25 mg",
           details: "Estrogen therapy",
-          schedule: ["Bedtime"]
+          schedule: [{ time: TimesOfDayEnum.BEDTIME, is_taken: false }]
         },
         {
           name: "Cortef",
           dose: "7.5 / 5",
           details: "Adrenal insufficiency",
-          schedule: ["Breakfast", "Dinner"]
+          schedule: [
+            { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
+            { time: TimesOfDayEnum.DINNER, is_taken: false }
+          ]
         },
         {
           name: "Ddavp",
           dose: "25/50",
           details: "Diabetes insipidus",
-          schedule: ["Breakfast", "Bedtime"]
+          schedule: [
+            { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
+            { time: TimesOfDayEnum.BEDTIME, is_taken: false }
+          ]
         }
       ],
       medications_non_camp: [

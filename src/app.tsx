@@ -14,7 +14,7 @@ export default class App extends Component {
   private routes = [
     {
       path: "/",
-      component: Home,
+      component: Login,
       exact: true
     },
     {

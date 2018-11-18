@@ -42,6 +42,16 @@ class PatientSearch extends Component<Props, State> {
     };
   }
 
+  getSnapshotBeforeUpdate(prevProps: Props, prevState: State) {
+    if (prevProps.curTimeOfDay !== this.props.curTimeOfDay) {
+      const arr = [...prevState.searchResult];
+      this.sortData(arr);
+      this.setState({ searchResult: arr });
+      return null;
+    }
+    return null;
+  }
+
   sortData = (arr: any[]) => {
     arr.sort((a, b) => {
       if (this.props.parentPage === SearchParentPageEnum.CHECK_IN) {
@@ -222,7 +232,6 @@ class PatientSearch extends Component<Props, State> {
   };
 
   renderCamperListItem = (camper: CamperType) => {
-    console.log("rendering cmaper://??", camper);
     return (
       <Row style={{ width: "100%" }}>
         <Col span={8}>

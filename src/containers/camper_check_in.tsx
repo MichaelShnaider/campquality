@@ -27,14 +27,6 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
     },
-    button: {
-        margin: "20px",
-        background: "#339933"
-    },
-    buttonNo: {
-        margin: "20px",
-        background: "#aaaaaa"
-    },
     textField: {
         marginLeft: "20px",
         marginRight: "20px",
@@ -700,12 +692,12 @@ class CamperCheckIn extends Component<Props, State> {
                     marginBottom: "30px"
                 }}>
                     {!this.state.camperData.checked_in &&
-                        <Button variant="contained" size="large" color="primary" className={classes.button}>
+                        <Button variant="contained" size="large" style={{ color: "white", backgroundColor: "#339933", margin: "20px" }}>
                             Check In
     </Button>
                     }
                     {!!this.state.camperData.checked_in &&
-                        <Button variant="contained" size="large" color="primary" className={classes.buttonNo}>
+                        <Button variant="contained" size="large" style={{ color: "white", backgroundColor: "#aaaaaa", margin: "20px" }}>
                             Checked In
     </Button>
                     }

@@ -16,6 +16,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import { changeCamperData } from '../actions/camper_actions';
+import { TimesOfDayEnum } from '../constants';
 
 type OwnProps = {};
 type StateProps = {};
@@ -127,6 +128,14 @@ class CamperCheckIn extends Component<Props, State> {
     render() {
         const { classes } = this.props;
         let camperData = this.state.camperData;
+        let schTime: TimesOfDayEnum[][] = [];
+        camperData.medication_treatements.medications.forEach(med => {
+            let temp: TimesOfDayEnum[] = [];
+            med.schedule.forEach(sch => {
+                temp.push(sch.time)
+            })
+            schTime.push(temp);
+        });
         return (
             <div>
                 <ButtonAppBar />
@@ -313,16 +322,90 @@ class CamperCheckIn extends Component<Props, State> {
                                         margin="normal"
                                         variant="outlined"
                                     />
-                                    <TextField
-                                        id="outlined-name"
-                                        label="Schedule"
-                                        multiline
-                                        value={this.state.camperData.medication_treatements.medications[index].schedule.join(", ")}
-                                        className={classes.textField}
-                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications[index], 'schedule', true)}
-                                        margin="normal"
-                                        variant="outlined"
-                                    />
+                                    <div style={{ marginTop: "-15px" }}>
+                                        <span style={{
+                                            position: "relative",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "13px",
+                                            left: "30px",
+                                            margin: "0px",
+                                            padding: "0px 4px"
+                                        }}> Breakfast</span>
+                                        <RadioGroup
+                                            name="breakfast"
+                                            value={(schTime[index].indexOf(TimesOfDayEnum.BREAKFAST) >= 0).toString()}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
+                                    <div style={{ marginTop: "-15px" }}>
+                                        <span style={{
+                                            position: "relative",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "13px",
+                                            left: "30px",
+                                            margin: "0px",
+                                            padding: "0px 4px"
+                                        }}> Lunch</span>
+                                        <RadioGroup
+                                            name="lunch"
+                                            value={(schTime[index].indexOf(TimesOfDayEnum.LUNCH) >= 0).toString()}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
+                                    <div style={{ marginTop: "-15px" }}>
+                                        <span style={{
+                                            position: "relative",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "13px",
+                                            left: "30px",
+                                            margin: "0px",
+                                            padding: "0px 4px"
+                                        }}> Dinner</span>
+                                        <RadioGroup
+                                            name="dinner"
+                                            value={(schTime[index].indexOf(TimesOfDayEnum.DINNER) >= 0).toString()}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
+                                    <div style={{ marginTop: "-15px" }}>
+                                        <span style={{
+                                            position: "relative",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "13px",
+                                            left: "30px",
+                                            margin: "0px",
+                                            padding: "0px 4px"
+                                        }}> Bedtime</span>
+                                        <RadioGroup
+                                            name="dinner"
+                                            value={(schTime[index].indexOf(TimesOfDayEnum.BEDTIME) >= 0).toString()}
+                                            className={classes.gender}
+                                        >
+                                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                                        </RadioGroup>
+                                    </div>
                                 </div>
                             )
                         })

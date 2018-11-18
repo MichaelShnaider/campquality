@@ -126,8 +126,22 @@ class PatientSearch extends Component<Props, State> {
       );
     } else {
       // if (this.props.parentPage === SearchParentPageEnum.DRUG_ADMIN) {
+      const drugs = camper.medication_treatements.medications;
+      console.log(drugs);
+
+      let isFinishedWithCamper = true;
+      for (const drug of drugs) {
+        for (const timesOfDrug of drug.schedule) {
+          if (timesOfDrug.time === this.props.curTimeOfDay) {
+            if (!timesOfDrug.is_taken) {
+              isFinishedWithCamper = false;
+            }
+          }
+        }
+      }
+
       if (this.props.curTimeOfDay === TimesOfDayEnum.BREAKFAST) {
-        if (camper.medication_given.breakfast) {
+        if (isFinishedWithCamper) {
           return (
             <Icon
               type="check-circle"
@@ -147,7 +161,7 @@ class PatientSearch extends Component<Props, State> {
       }
 
       if (this.props.curTimeOfDay === TimesOfDayEnum.LUNCH) {
-        if (camper.medication_given.lunch) {
+        if (isFinishedWithCamper) {
           return (
             <Icon
               type="check-circle"
@@ -167,7 +181,7 @@ class PatientSearch extends Component<Props, State> {
       }
 
       if (this.props.curTimeOfDay === TimesOfDayEnum.DINNER) {
-        if (camper.medication_given.dinner) {
+        if (isFinishedWithCamper) {
           return (
             <Icon
               type="check-circle"
@@ -187,7 +201,7 @@ class PatientSearch extends Component<Props, State> {
       }
 
       if (this.props.curTimeOfDay === TimesOfDayEnum.BEDTIME) {
-        if (camper.medication_given.bedtime) {
+        if (isFinishedWithCamper) {
           return (
             <Icon
               type="check-circle"

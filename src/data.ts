@@ -44,7 +44,10 @@ export const camperData = [
           name: "Estrace",
           dose: ".25 mg",
           details: "Estrogen therapy",
-          schedule: [{ time: TimesOfDayEnum.BEDTIME, is_taken: false }]
+          schedule: [
+            { time: TimesOfDayEnum.BEDTIME, is_taken: false },
+            { time: TimesOfDayEnum.LUNCH, is_taken: false }
+          ]
         },
         {
           name: "Cortef",
@@ -480,7 +483,8 @@ export const camperData = [
           details: "Diabetes insipidus",
           schedule: [
             { time: TimesOfDayEnum.BREAKFAST, is_taken: false },
-            { time: TimesOfDayEnum.BEDTIME, is_taken: false }
+            { time: TimesOfDayEnum.BEDTIME, is_taken: false },
+            { time: TimesOfDayEnum.LUNCH, is_taken: false }
           ]
         }
       ],

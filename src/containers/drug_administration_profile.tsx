@@ -23,6 +23,10 @@ class DrugAdminProfile extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    console.log(
+      "WHYYY",
+      props.camperData[this.props.match.params.camper_id].first_name
+    );
     this.state = {
       camper: {},
       breakfastArr: [],
@@ -30,8 +34,15 @@ class DrugAdminProfile extends Component<Props, State> {
       dinnerArr: [],
       bedtimeArr: [],
       showConfirmationModal: false,
-      selectedMed: {}
+      selectedMed: {},
+      firstName: props.camperData[this.props.match.params.camper_id].first_name,
+      lastName: props.camperData[this.props.match.params.camper_id].last_name
     };
+    console.log(
+      "THE STATE ON CONSTRUCTOR",
+      this.state.firstName,
+      this.state.lastName
+    );
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -210,20 +221,21 @@ class DrugAdminProfile extends Component<Props, State> {
 
   render() {
     // console.log(this.props, this.state);
+    console.log("ID: ", this.props.match.params.camper_id, this.props);
+    const thecamper = this.props.camperData[this.props.match.params.camper_id];
+    console.log("THE CAMPER: ", thecamper.first_name, thecamper.last_name);
     return (
       <div style={{ textAlign: "center" }}>
         <ButtonAppBar />
         <h3 style={{ margin: "20px" }}>
-          {this.state.camper.first_name} {this.state.camper.last_name}
+          {this.state.firstName} {this.state.lastName}
         </h3>
         <h3>November 17, 2018</h3>
         <div style={{ textAlign: "left", padding: "25px" }}>
           {this.renderListContainer()}
         </div>
         <Modal
-          title={`${this.state.camper.first_name} ${
-            this.state.camper.last_name
-          }`}
+          title={`${this.state.firstName} ${this.state.lastName}`}
           visible={this.state.showConfirmationModal}
           onOk={this.handleOk}
           onCancel={() =>

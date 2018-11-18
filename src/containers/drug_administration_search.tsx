@@ -12,6 +12,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import ReactDOM from "react-dom";
+import { changeTimeOfDay } from "../actions/camper_actions";
 
 type OwnProps = {};
 type StateProps = {};
@@ -26,9 +27,10 @@ class DrugAdministration extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    console.log("constructory props:", props);
     this.state = {
       labelWidth: 0,
-      curTimeOfDay: TimesOfDayEnum.BREAKFAST
+      curTimeOfDay: props.timeOfDay
     };
   }
 
@@ -39,6 +41,7 @@ class DrugAdministration extends Component<Props, State> {
   }
 
   handleChange = name => event => {
+    this.props.changeTimeOfDay(event.target.value);
     this.setState({ [name]: event.target.value });
   };
 
@@ -92,11 +95,11 @@ class DrugAdministration extends Component<Props, State> {
 }
 
 function mapStateToProps(state: RootState): StateProps {
-  return {};
+  return state.timeOfDay;
 }
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ changeTimeOfDay }, dispatch);
 }
 
 export default connect<StateProps, DispatchProps>(

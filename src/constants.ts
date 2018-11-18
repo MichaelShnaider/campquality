@@ -14,3 +14,7 @@ export enum TimesOfDayEnum {
   DINNER = "DINNER",
   BEDTIME = "BEDTIME"
 }
+
+export enum ChangeTimeOfDayEnum {
+  CHANGE_TIME = "CHANGE_TIME"
+}

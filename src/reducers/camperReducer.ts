@@ -1,5 +1,9 @@
 import { produce } from "immer";
-import { CamperDataEnum } from "../constants";
+import {
+  CamperDataEnum,
+  TimesOfDayEnum,
+  ChangeTimeOfDayEnum
+} from "../constants";
 import { camperData } from "../data";
 
 type State = {
@@ -23,6 +27,23 @@ const initial: State = checkLocalStorage();
 type ActionType = {
   type: string;
   payload: any;
+};
+
+export const timeOfDayReducer = (
+  state = { timeOfDay: TimesOfDayEnum.BREAKFAST },
+  action: ActionType
+) => {
+  return produce(state, draft => {
+    switch (action.type) {
+      case ChangeTimeOfDayEnum.CHANGE_TIME: {
+        draft.timeOfDay = action.payload;
+        return;
+      }
+      default: {
+        return;
+      }
+    }
+  });
 };
 
 export const camperReducer = (state = initial, action: ActionType) => {

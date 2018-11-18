@@ -3,6 +3,9 @@ import { bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 import PatientSearch from "../components/patient_search";
 import { RootState } from "../reducers";
+import ButtonAppBar from "../components/top_bar";
+import { transform } from "typescript";
+import { SearchParentPageEnum } from "../constants";
 
 type OwnProps = {};
 type StateProps = {};
@@ -19,11 +22,14 @@ class CheckIn extends Component<Props, State> {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div>
-        <h1>Camper Check-In</h1>
-        <PatientSearch />
+      <div style={{ textAlign: "center" }}>
+        <ButtonAppBar />
+        <img
+          src="http://campquality.org/wordpress/wp-content/themes/campquality2016/img/logo_camp-quality.png"
+          style={{ height: "150px", marginTop: "20px", marginBottom: "20px" }}
+        />
+        <PatientSearch parentPage={SearchParentPageEnum.CHECK_IN} />
       </div>
     );
   }

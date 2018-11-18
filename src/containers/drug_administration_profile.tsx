@@ -70,7 +70,7 @@ class DrugAdminProfile extends Component<Props, State> {
               timeOfDay: TimesOfDayEnum.BREAKFAST,
               is_taken: schedule.is_taken,
               ...med,
-              time: `9:${Math.floor(Math.random() * 20) + 10} A.M.`
+              time: `9:00 A.M.`
             });
             break;
           }
@@ -79,7 +79,7 @@ class DrugAdminProfile extends Component<Props, State> {
               timeOfDay: TimesOfDayEnum.LUNCH,
               is_taken: schedule.is_taken,
               ...med,
-              time: `9:${Math.floor(Math.random() * 20) + 10} A.M.`
+              time: `12:00 P.M.`
             });
             break;
           }
@@ -88,7 +88,7 @@ class DrugAdminProfile extends Component<Props, State> {
               timeOfDay: TimesOfDayEnum.DINNER,
               is_taken: schedule.is_taken,
               ...med,
-              time: `9:${Math.floor(Math.random() * 20) + 10} A.M.`
+              time: `5:00 P.M.`
             });
             break;
           }
@@ -97,7 +97,7 @@ class DrugAdminProfile extends Component<Props, State> {
               timeOfDay: TimesOfDayEnum.BEDTIME,
               is_taken: schedule.is_taken,
               ...med,
-              time: `9:${Math.floor(Math.random() * 20) + 10} A.M.`
+              time: `10:00 P.M.`
             });
             break;
           }

@@ -15,6 +15,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
+import { changeCamperData } from '../actions/camper_actions';
 
 type OwnProps = {};
 type StateProps = {};
@@ -85,6 +86,7 @@ class CamperCheckIn extends Component<Props, State> {
         } else {
             this.state.camperData[name] = event.target.value;
         }
+        this.props.changeCamperData(this.state.camperData);
         this.setState({
             camperData: this.state.camperData
         });
@@ -96,6 +98,7 @@ class CamperCheckIn extends Component<Props, State> {
         } else {
             obj[prop] = event.target.value;
         }
+        this.props.changeCamperData(this.state.camperData);
         this.setState({
             camperData: this.state.camperData
         });
@@ -714,7 +717,7 @@ function mapStateToProps(state: RootState): StateProps {
 }
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ changeCamperData }, dispatch);
 }
 
 CamperCheckIn.propTypes = {

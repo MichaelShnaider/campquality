@@ -1,5 +1,6 @@
 export enum CamperDataEnum {
-  DEFAULT = "DEFAULT"
+  DEFAULT = "DEFAULT",
+  CHANGE_CAMPER = "CHANGE_CAMPER"
 }
 
 export enum SearchParentPageEnum {

@@ -18,6 +18,9 @@ export const camperReducer = (state = initial, action: ActionType) => {
       case CamperDataEnum.DEFAULT: {
         return;
       }
+      case CamperDataEnum.CHANGE_CAMPER: {
+        draft[action.payload.id] = action.payload;
+      }
       default: {
         return;
       }

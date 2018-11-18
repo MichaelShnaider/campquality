@@ -6,14 +6,28 @@ type State = {
   status: string;
 };
 
-const initial: State = camperData;
+function checkLocalStorage() {
+  const storedData = localStorage.getItem('camperData');
+  if (storedData) {
+    return JSON.parse(storedData);
+  } else {
+    return camperData;
+  }
+}
+
+function saveToLocalStorage(data) {
+  localStorage.setItem('camperData', JSON.stringify(data));
+}
+
+const initial: State = checkLocalStorage();
 type ActionType = {
   type: string;
   payload: any;
 };
 
 export const camperReducer = (state = initial, action: ActionType) => {
-  return produce(state, draft => {
+  const newState = produce(state, draft => {
+
     switch (action.type) {
       case CamperDataEnum.DEFAULT: {
         return;
@@ -26,4 +40,7 @@ export const camperReducer = (state = initial, action: ActionType) => {
       }
     }
   });
+
+  saveToLocalStorage(newState);
+  return newState;
 };

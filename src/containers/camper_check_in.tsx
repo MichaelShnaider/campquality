@@ -11,6 +11,10 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
 
 type OwnProps = {};
 type StateProps = {};
@@ -22,6 +26,14 @@ const styles = theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
+    },
+    button: {
+        margin: "20px",
+        background: "#339933"
+    },
+    buttonNo: {
+        margin: "20px",
+        background: "#aaaaaa"
     },
     textField: {
         marginLeft: "20px",
@@ -43,13 +55,55 @@ const styles = theme => ({
         margin: 0,
         marginLeft: "20px",
         marginRight: "20px"
+    },
+    gender: {
+        border: "1px solid #b6b6b6",
+        borderRadius: "4px",
+        margin: "5px 20px",
+        display: "inline-block",
+        width: "90%",
+        padding: "0px",
+        paddingLeft: "15px",
+        paddingRight: "15px"
+    },
+    allergies: {
+        border: "1px solid #b6b6b6",
+        borderRadius: "4px",
+        margin: "5px 20px",
+        width: "90%",
+        padding: "20px",
+        paddingLeft: "15px",
+        paddingRight: "15px"
     }
+
 });
 
 class CamperCheckIn extends Component<Props, State> {
 
-    handleChange = name => event => {
-        this.state.camperData[name] = event.target.value;
+    handleChange = (name, idx) => event => {
+        let keys = name.split(".");
+        if (keys.length > 1) {
+
+            let camperData = this.state.camperData;
+
+            for (var i = 0; i < keys.length - 1; i++)
+                camperData = camperData[keys[i]
+
+            camperData[keys[keys.length - 1]] = event.target.value;
+        } else {
+            this.state.camperData[name] = event.target.value;
+        }
+        this.setState({
+            camperData: this.state.camperData
+        });
+    };
+
+    handleChange2 = (obj, prop, combine = false) => event => {
+        if (combine) {
+            obj[prop] = event.target.value.split(", ");
+        } else {
+            obj[prop] = event.target.value;
+        }
         this.setState({
             camperData: this.state.camperData
         });
@@ -96,15 +150,31 @@ class CamperCheckIn extends Component<Props, State> {
                         margin="normal"
                         variant="outlined"
                     />
-                    <TextField
-                        id="outlined-name"
-                        label="Gender"
+
+                    <RadioGroup
+                        name="gender"
                         value={this.state.camperData.gender}
-                        className={classes.textField}
                         onChange={this.handleChange('gender')}
-                        margin="normal"
-                        variant="outlined"
-                    />
+                        className={classes.gender}
+                    >
+                        <span style={{
+                            position: "relative",
+                            width: "45px",
+                            zIndex: "1000",
+                            fontSize: "12px",
+                            display: "block",
+                            background: "white",
+                            color: "#767676",
+                            top: "-6px",
+                            left: "0px",
+                            margin: "0px",
+                            padding: "0px"
+                        }}> Gender</span>
+                        <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                        <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                    </RadioGroup>
+
                     <TextField
                         id="outlined-name"
                         label="Height (cm)"
@@ -127,174 +197,520 @@ class CamperCheckIn extends Component<Props, State> {
                     <Typography variant="h6" color="inherit" className={classes.subtitle}>
                         Allergies
                     </Typography>
+
+                    <RadioGroup
+                        name="epinephrine_injector"
+                        value={this.state.camperData.allergies_dietary_restriction.epinephrine_injector.toString()}
+                        onChange={this.handleChange('allergies_dietary_restriction.epinephrine_injector')}
+                        className={classes.gender}
+                    >
+                        <span style={{
+                            position: "relative",
+                            width: "120px",
+                            zIndex: "1000",
+                            fontSize: "12px",
+                            display: "block",
+                            background: "white",
+                            color: "#767676",
+                            top: "-6px",
+                            left: "0px",
+                            margin: "0px",
+                            padding: "0px"
+                        }}> Epinephrine Injector</span>
+                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                        <FormControlLabel value="false" control={<Radio />} label="No" />
+                    </RadioGroup>
+
+
                     <TextField
                         id="outlined-name"
                         label="Epinephrine Injector"
                         value={this.state.camperData.allergies_dietary_restriction.epinephrine_injector}
                         className={classes.textField}
-                        onChange={this.handleChange('epinephrine_injector')}
+                        onChange={this.handleChange('allergies_dietary_restriction.epinephrine_injector')}
                         margin="normal"
                         variant="outlined"
                     />
                     <TextField
                         id="outlined-name"
                         label="Anaphylaxis"
+                        multiline
                         value={this.state.camperData.allergies_dietary_restriction.anaphylaxis}
                         className={classes.textField}
-                        onChange={this.handleChange('anaphylaxis')}
+                        onChange={this.handleChange('allergies_dietary_restriction.anaphylaxis')}
                         margin="normal"
                         variant="outlined"
                     />
-                    {/* <TextField
-                        id="outlined-uncontrolled"
-                        label="Uncontrolled"
-                        defaultValue="foo"
-                        margin="normal"
-                        variant="outlined"
-                    />
+
+                    {
+                        this.state.camperData.allergies_dietary_restriction.allergies.map((allergy, index) => {
+                            return (
+                                <div key={index} className={classes.allergies} >
+                                    Allergy #{index + 1}
+                                    <br /><br />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Name"
+                                        multiline
+                                        value={this.state.camperData.allergies_dietary_restriction.allergies[index].name}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.allergies_dietary_restriction.allergies[index], 'name')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Details"
+                                        multiline
+                                        value={this.state.camperData.allergies_dietary_restriction.allergies[index].addtional_information}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.allergies_dietary_restriction.allergies[index], 'addtional_information')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+
+                    <br />
+                    <Typography variant="h6" color="inherit" className={classes.subtitle}>
+                        Medical
+                    </Typography>
+
+                    {
+                        this.state.camperData.medication_treatements.medications.map((allergy, index) => {
+                            return (
+                                <div key={index} className={classes.allergies} >
+                                    Medication #{index + 1}
+                                    <br /><br />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Name"
+                                        multiline
+                                        value={this.state.camperData.medication_treatements.medications[index].name}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications[index], 'name')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Details"
+                                        multiline
+                                        value={this.state.camperData.medication_treatements.medications[index].dose}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications[index], 'details')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Dose"
+                                        multiline
+                                        value={this.state.camperData.medication_treatements.medications[index].details}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications[index], 'dose')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Schedule"
+                                        multiline
+                                        value={this.state.camperData.medication_treatements.medications[index].schedule.join(", ")}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications[index], 'schedule', true)}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+
+                    {
+                        this.state.camperData.medication_treatements.medications_non_camp.map((allergy, index) => {
+                            return (
+                                <div key={index} className={classes.allergies} >
+                                    Non-Camp Medication #{index + 1}
+                                    <br /><br />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Name"
+                                        multiline
+                                        value={this.state.camperData.medication_treatements.medications_non_camp[index].name}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications_non_camp[index], 'name')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Details"
+                                        multiline
+                                        value={this.state.camperData.medication_treatements.medications_non_camp[index].details}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.medication_treatements.medications_non_camp[index], 'details')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+                    <br />
+                    <Typography variant="h6" color="inherit" className={classes.subtitle}>
+                        Immunizations
+                    </Typography>
+
+                    {
+                        this.state.camperData.Immunizations.vaccination.map((allergy, index) => {
+                            return (
+                                <div key={index} className={classes.allergies} >
+                                    Vaccination #{index + 1}
+                                    <br /><br />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Name"
+                                        multiline
+                                        value={this.state.camperData.Immunizations.vaccination[index].name}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.Immunizations.vaccination[index], 'name')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <RadioGroup
+                                        name="vaccinated"
+                                        value={this.state.camperData.Immunizations.vaccination[index].vaccinated.toString()}
+                                        onChange={this.handleChange2(this.state.camperData.Immunizations.vaccination[index], 'vaccinated')}
+                                        className={classes.gender}
+                                    >
+                                        <span style={{
+                                            position: "relative",
+                                            width: "120px",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            display: "block",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "-6px",
+                                            left: "0px",
+                                            margin: "0px",
+                                            padding: "0px"
+                                        }}> Vaccinated</span>
+                                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                        <FormControlLabel value="false" control={<Radio />} label="No" />
+                                    </RadioGroup>
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Date"
+                                        multiline
+                                        value={this.state.camperData.Immunizations.vaccination[index].date}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.Immunizations.vaccination[index], 'date')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
                     <TextField
-                        required
-                        id="outlined-required"
-                        label="Required"
-                        defaultValue="Hello World"
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        error
-                        id="outlined-error"
-                        label="Error"
-                        defaultValue="Hello World"
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Disabled"
-                        defaultValue="Hello World"
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-email-input"
-                        label="Email"
-                        type="email"
-                        name="email"
-                        autoComplete="email"
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-read-only-input"
-                        label="Read Only"
-                        defaultValue="Hello World"
-                        margin="normal"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-dense"
-                        label="Dense"
-                        className={}
-                        margin="dense"
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-multiline-flexible"
-                        label="Multiline"
+                        id="outlined-name"
+                        label="Missing Immunizations Details"
                         multiline
-                        rowsMax="4"
-                        value={"this.state.multiline"}
-                        onChange={this.handleChange('multiline')}
-
+                        value={this.state.camperData.Immunizations.missing_immunization_details}
+                        className={classes.textField}
+                        onChange={this.handleChange2(this.state.camperData.Immunizations, 'missing_immunization_details')}
                         margin="normal"
-                        helperText="hello"
                         variant="outlined"
                     />
+
+                    <br /><br />
+                    <Typography variant="h6" color="inherit" className={classes.subtitle}>
+                        Health History
+                    </Typography>
+
+                    {
+                        this.state.camperData.health_history.conditions.map((allergy, index) => {
+                            return (
+                                <div key={index} className={classes.allergies} >
+                                    Condition #{index + 1}
+                                    <br /><br />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Name"
+                                        multiline
+                                        value={this.state.camperData.health_history.conditions[index].name}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.health_history.conditions[index], 'name')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <RadioGroup
+                                        name="diagnosed"
+                                        value={this.state.camperData.health_history.conditions[index].experience_experienced.toString()}
+                                        onChange={this.handleChange2(this.state.camperData.health_history.conditions[index], 'experience_experienced')}
+                                        className={classes.gender}
+                                    >
+                                        <span style={{
+                                            position: "relative",
+                                            width: "65px",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            display: "block",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "-6px",
+                                            left: "0px",
+                                            margin: "0px",
+                                            padding: "0px"
+                                        }}> Diagnosed</span>
+                                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                        <FormControlLabel value="false" control={<Radio />} label="No" />
+                                    </RadioGroup>
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Details"
+                                        multiline
+                                        value={this.state.camperData.health_history.conditions[index].details}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.health_history.conditions[index], 'details')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+                    <div className={classes.allergies} >
+                        Mental Health
+                        <br /><br />
+                        <RadioGroup
+                            name="Mental Health"
+                            value={this.state.camperData.health_history.other_mental_health_issues.experience_experienced.toString()}
+                            onChange={this.handleChange('health_history.other_mental_health_issues.experience_experienced')}
+                            className={classes.gender}
+                        >
+                            <span style={{
+                                position: "relative",
+                                width: "65px",
+                                zIndex: "1000",
+                                fontSize: "12px",
+                                display: "block",
+                                background: "white",
+                                color: "#767676",
+                                top: "-6px",
+                                left: "0px",
+                                margin: "0px",
+                                padding: "0px"
+                            }}> Diagnosed</span>
+                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="false" control={<Radio />} label="No" />
+                        </RadioGroup>
+                        <TextField
+                            id="outlined-name"
+                            label="Details"
+                            multiline
+                            value={this.state.camperData.health_history.other_mental_health_issues.details}
+                            className={classes.textField}
+                            onChange={this.handleChange('health_history.other_mental_health_issues.details')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                    </div>
+
+
+                    {
+                        this.state.camperData.health_history.disease_history.map((allergy, index) => {
+                            return (
+                                <div key={index} className={classes.allergies} >
+                                    Disease #{index + 1}
+                                    <br /><br />
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Name"
+                                        multiline
+                                        value={this.state.camperData.health_history.disease_history[index].name}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.health_history.disease_history[index], 'name')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <RadioGroup
+                                        name="diagnosed"
+                                        value={this.state.camperData.health_history.disease_history[index].experience_experienced.toString()}
+                                        onChange={this.handleChange2(this.state.camperData.health_history.disease_history[index], 'experience_experienced')}
+                                        className={classes.gender}
+                                    >
+                                        <span style={{
+                                            position: "relative",
+                                            width: "65px",
+                                            zIndex: "1000",
+                                            fontSize: "12px",
+                                            display: "block",
+                                            background: "white",
+                                            color: "#767676",
+                                            top: "-6px",
+                                            left: "0px",
+                                            margin: "0px",
+                                            padding: "0px"
+                                        }}> Diagnosed</span>
+                                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                        <FormControlLabel value="false" control={<Radio />} label="No" />
+                                    </RadioGroup>
+                                    <TextField
+                                        id="outlined-name"
+                                        label="Details"
+                                        multiline
+                                        value={this.state.camperData.health_history.disease_history[index].details}
+                                        className={classes.textField}
+                                        onChange={this.handleChange2(this.state.camperData.health_history.disease_history[index], 'details')}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                </div>
+                            )
+                        })
+                    }
                     <TextField
-                        id="outlined-multiline-static"
-                        label="Multiline"
+                        id="outlined-name"
+                        label="Hospitalizations"
                         multiline
-                        rows="4"
-                        defaultValue="Default Value"
-
+                        value={this.state.camperData.health_history.hospitalizations}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_history.hospitalizations')}
                         margin="normal"
                         variant="outlined"
                     />
                     <TextField
-                        id="outlined-helperText"
-                        label="Helper text"
-                        defaultValue="Default Value"
-
-                        helperText="Some important text"
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-with-placeholder"
-                        label="With placeholder"
-                        placeholder="Placeholder"
-
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-textarea"
-                        label="Multiline Placeholder"
-                        placeholder="Placeholder"
+                        id="outlined-name"
+                        label="Communicable Disease (3 months)"
                         multiline
-
+                        value={this.state.camperData.health_history.communicable_disease_3_months}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_history.communicable_disease_3_months')}
                         margin="normal"
                         variant="outlined"
                     />
                     <TextField
-                        id="outlined-number"
-                        label="Number"
-                        value={69}
-                        onChange={this.handleChange('age')}
-                        type="number"
-
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        id="outlined-name"
+                        label="Activity Restrictions"
+                        multiline
+                        value={this.state.camperData.health_history.activity_restrictions}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_history.activity_restrictions')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="outlined-name"
+                        label="Special Assistance Details"
+                        multiline
+                        value={this.state.camperData.health_history.special_assistance_required}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_history.special_assistance_required')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="outlined-name"
+                        label="Discuss with Medical"
+                        multiline
+                        value={this.state.camperData.health_history.discuss_with_medical}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_history.discuss_with_medical')}
                         margin="normal"
                         variant="outlined"
                     />
 
-
+                    <br /><br />
+                    <Typography variant="h6" color="inherit" className={classes.subtitle}>
+                        Doctor Information
+                    </Typography>
                     <TextField
-                        id="outlined-full-width"
-                        label="Label"
-                        style={{ margin: 8 }}
-                        placeholder="Placeholder"
-                        helperText="Full width!"
-                        fullWidth
+                        id="outlined-name"
+                        label="Doctor Name"
+                        multiline
+                        value={this.state.camperData.doctor_information.doctor}
+                        className={classes.textField}
+                        onChange={this.handleChange('doctor_information.doctor')}
                         margin="normal"
                         variant="outlined"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                     />
                     <TextField
-                        id="outlined-bare"
-
-                        defaultValue="Bare"
+                        id="outlined-name"
+                        label="Discuss with Medical"
+                        multiline
+                        value={this.state.camperData.doctor_information.type}
+                        className={classes.textField}
+                        onChange={this.handleChange('doctor_information.type')}
                         margin="normal"
                         variant="outlined"
-                    /> */}
+                    />
+                    <TextField
+                        id="outlined-name"
+                        label="Discuss with Medical"
+                        multiline
+                        value={this.state.camperData.doctor_information.hospital}
+                        className={classes.textField}
+                        onChange={this.handleChange('doctor_information.hospital')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+
+                    <br /><br />
+                    <Typography variant="h6" color="inherit" className={classes.subtitle}>
+                        Health Insurance
+                    </Typography>
+                    <TextField
+                        id="outlined-name"
+                        label="Province"
+                        multiline
+                        value={this.state.camperData.health_insurance.province}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_insurance.province')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="outlined-name"
+                        label="Health Card"
+                        multiline
+                        value={this.state.camperData.health_insurance.health_card}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_insurance.health_card')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="outlined-name"
+                        label="Expiry Date"
+                        multiline
+                        value={this.state.camperData.health_insurance.expiry}
+                        className={classes.textField}
+                        onChange={this.handleChange('health_insurance.expiry')}
+                        margin="normal"
+                        variant="outlined"
+                    />
                 </form>
+                <div style={{
+                    textAlign: "center",
+                    marginBottom: "30px"
+                }}>
+                    {!this.state.camperData.checked_in &&
+                        <Button variant="contained" size="large" color="primary" className={classes.button}>
+                            Check In
+    </Button>
+                    }
+                    {!!this.state.camperData.checked_in &&
+                        <Button variant="contained" size="large" color="primary" className={classes.buttonNo}>
+                            Checked In
+    </Button>
+                    }
 
+                </div>
 
             </div>
     }

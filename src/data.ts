@@ -415,10 +415,10 @@ export const camperData = [
     gender: "Male",
     date_of_birth: "2018-05-02T00:00:00.000Z",
     medication_given: {
-      breakfast: false,
+      breakfast: true,
       lunch: false,
       dinner: false,
-      bedtime: false
+      bedtime: true
     },
     height_cm: "164",
     weight_lbs: "100",

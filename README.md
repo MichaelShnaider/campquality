@@ -10,7 +10,8 @@ Read more at http://campquality.org/
 3. Now you are setup, and you can use "yarn start" to run the web app.
 
 DEMO:
-<img src="app_demo.gif" width="500">
+
+<img src="app_demo.gif" width="250">
 
 If it doesn't work:
 

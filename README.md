@@ -9,11 +9,11 @@ Read more at http://campquality.org/
 2. Run "yarn build:dll"
 3. Now you are setup, and you can use "yarn start" to run the web app.
 
-DEMO:
+## Demo ##
 
 <img src="app_demo.gif" width="250">
 
-If it doesn't work:
+## If installation doesn't work ##
 
 - Check your node version. If your node version is below 10 then change it to 10 by following these steps:
   - Install nvm (Node Version Manager) by running:

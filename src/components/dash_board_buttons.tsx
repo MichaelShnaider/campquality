@@ -65,7 +65,7 @@ class DashBoardButtons extends React.Component {
             </Link>
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Link to="/summary">
+            <Link to="/drug-administration-summary/0">
               <Icon
                 className={classNames(classes.icon, "fas fa-clipboard-list")}
                 style={{ fontSize: "75px", color: "#449990" }}

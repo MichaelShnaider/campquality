@@ -1,13 +1,13 @@
-import React, {Component} from "react";
-import {bindActionCreators, Dispatch} from "redux";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
 import compose from "recompose/compose";
-import {RootState} from "../reducers";
+import { RootState } from "../reducers";
 import ButtonAppBar from "../components/top_bar";
 import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import {Col, List, Row} from "antd";
+import { Col, List, Row } from "antd";
 
 type OwnProps = {};
 type StateProps = {};
@@ -17,8 +17,8 @@ type State = {};
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: "20px",
@@ -28,10 +28,10 @@ const styles = theme => ({
     marginBottom: "5px"
   },
   dense: {
-    marginTop: 16,
+    marginTop: 16
   },
   menu: {
-    width: 200,
+    width: 200
   },
   title: {
     margin: "20px"
@@ -44,7 +44,6 @@ const styles = theme => ({
 });
 
 class DrugAdministrationSummary extends Component<Props, State> {
-
   handleChange = name => event => {
     this.state.camperData[name] = event.target.value;
     this.setState({
@@ -56,20 +55,19 @@ class DrugAdministrationSummary extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    let camperData = this.props.camperData[this.props.match.params.camper_id]
+    let camperData = this.props.camperData[this.props.match.params.camper_id];
     this.state = {
       camperData: camperData
     };
   }
 
-  renderCamperListItem = (medication) => {
+  renderCamperListItem = medication => {
     console.log("rendering cmaper://??", medication);
     return (
-      <Row style={{width: "100%"}}>
-
+      <Row style={{ width: "100%" }}>
         <Col span={12}>
-          <Row style={{width: "100%", height: "100%", marginTop: "10px"}}>
-            <Row style={{width: "100%", height: "100%", marginTop: "2px"}}>
+          <Row style={{ width: "100%", height: "100%", marginTop: "10px" }}>
+            <Row style={{ width: "100%", height: "100%", marginTop: "2px" }}>
               <Col span={12}>
                 <Typography align="left" variant="h6" color="inherit">
                   Name:
@@ -81,7 +79,7 @@ class DrugAdministrationSummary extends Component<Props, State> {
                 </Typography>
               </Col>
             </Row>
-            <Row style={{width: "100%", height: "100%", marginTop: "2px"}}>
+            <Row style={{ width: "100%", height: "100%", marginTop: "2px" }}>
               <Col span={12}>
                 <Typography align="left" variant="h6" color="inherit">
                   Dosage:
@@ -93,7 +91,7 @@ class DrugAdministrationSummary extends Component<Props, State> {
                 </Typography>
               </Col>
             </Row>
-            <Row style={{width: "100%", height: "100%", marginTop: "2px"}}>
+            <Row style={{ width: "100%", height: "100%", marginTop: "2px" }}>
               <Col span={12}>
                 <Typography align="left" variant="h6" color="inherit">
                   Drug Details:
@@ -105,16 +103,14 @@ class DrugAdministrationSummary extends Component<Props, State> {
                 </Typography>
               </Col>
             </Row>
-
           </Row>
         </Col>
-
       </Row>
     );
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     let camperData = this.state.camperData;
 
     return (
@@ -128,24 +124,23 @@ class DrugAdministrationSummary extends Component<Props, State> {
           November 15, 2018
         </Typography>
         <Typography variant="h6" color="inherit" className={classes.subtitle}>
-          Breakfast Who fdsfdsfsdfds the drug
+          Breakfast
         </Typography>
         <List
           size="large"
           bordered
           dataSource={camperData.medication_treatements.medications}
-          renderItem={(medication) => (
+          renderItem={medication => (
             <List.Item>{this.renderCamperListItem(medication)}</List.Item>
-
           )}
         />
-      </div>    );
+      </div>
+    );
   }
-
 }
 
 function mapStateToProps(state: RootState): StateProps {
-  return {camperData: state.campers};
+  return { camperData: state.campers };
 }
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
@@ -158,5 +153,8 @@ DrugAdministrationSummary.propTypes = {
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(DrugAdministrationSummary);

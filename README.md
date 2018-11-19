@@ -4,6 +4,9 @@
 2. Run "yarn build:dll"
 3. Now you are setup, and you can use "yarn start" to run the web app.
 
+DEMO:
+![](app_demo.gif)
+
 If it doesn't work:
 
 - Check your node version. If your node version is below 10 then change it to 10 by following these steps:

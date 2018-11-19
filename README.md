@@ -1,3 +1,8 @@
+## Camp Quality Gift The Code Hackathon Project##
+
+"Camp Quality strives to provide empowering camp experiences for kids with cancer. Our philosophy is that together, we can do anything, be anything and achieve everything. We have the power to turn life’s challenges into adventures." 
+Read more at http://campquality.org/
+
 ## How to setup
 
 1. Run "yarn"

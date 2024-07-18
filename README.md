@@ -11,7 +11,7 @@ Read more at http://campquality.org/
 
 ## Demo ##
 
-<img src="app_demo.gif" width="250">
+<img src="app_demo_speed.gif" width="250">
 
 ## If installation doesn't work ##
 

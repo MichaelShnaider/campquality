@@ -63,11 +63,15 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <div className="root" role="main">
-          <Switch>
-            {this.routes.map((props, index) => (
-              <Route key={index} {...props} />
-            ))}
-          </Switch>
+          <div className="phone-container">
+            <div className="phone-content">
+              <Switch>
+                {this.routes.map((props, index) => (
+                  <Route key={index} {...props} />
+                ))}
+              </Switch>
+            </div>
+          </div>
         </div>
       </BrowserRouter>
     );

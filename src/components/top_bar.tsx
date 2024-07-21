@@ -10,6 +10,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Grid from "@material-ui/core/Grid";
 import { Z_BLOCK } from "zlib";
 import { Link } from "react-router-dom";
+import { Home } from 'lucide-react';
+
 
 const styles = {
   root: {
@@ -30,9 +32,9 @@ function ButtonAppBar(props) {
     <div className={classes.root} style={{ textAlign: "left" }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="body1" color="inherit" className={classes.grow}>
-            Jane Doe
-          </Typography>
+          <Link to="/dashboard" className="customLink">
+            <Home size={24} />
+          </Link>
 
           <Typography
             variant="body1"
@@ -40,14 +42,9 @@ function ButtonAppBar(props) {
             className={classes.grow}
             align="right"
           >
-            Doctor
+            Jane Doe
           </Typography>
 
-          <IconButton color="inherit" aria-label="Menu">
-            <Link to="/dashboard" className="customLink">
-              <MenuIcon />
-            </Link>
-          </IconButton>
         </Toolbar>
       </AppBar>
     </div>

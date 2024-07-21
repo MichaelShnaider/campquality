@@ -20,7 +20,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
+      // width: 400,
       marginLeft: "auto",
       marginRight: "auto"
     }
@@ -31,7 +31,8 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center",
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
+      .spacing.unit * 3}px`,
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -54,7 +55,7 @@ function Login(props) {
       <CssBaseline />
       <Paper className={classes.paper}>
         <img
-          src="http://campquality.org/wordpress/wp-content/themes/campquality2016/img/logo_camp-quality.png"
+          src="https://static.wixstatic.com/media/c0f27c_81f3d5efbd2043df9d38a086173d352c~mv2.png/v1/fill/w_324,h_187,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/CQ%20Canada_Logo_Green.png"
           style={{ height: "150px", marginBottom: "30px" }}
         />
         <Typography component="h1" variant="h5">
@@ -62,7 +63,7 @@ function Login(props) {
         </Typography>
         <FormControl margin="normal" required fullWidth>
           <InputLabel htmlFor="email">Email Address</InputLabel>
-          <Input id="email" name="email" autoComplete="email" autoFocus />
+          <Input id="email" name="email" autoComplete="email" autoFocus defaultValue="janedoe@gmail.com" />
         </FormControl>
         <FormControl margin="normal" required fullWidth>
           <InputLabel htmlFor="password">Password</InputLabel>
@@ -71,6 +72,7 @@ function Login(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            defaultValue="password"
           />
         </FormControl>
         <FormControlLabel
@@ -85,7 +87,7 @@ function Login(props) {
           className={classes.submit}
           onClick={() => (window.location.href = "/dashboard")}
         >
-          Sign in
+          Demo Login
         </Button>
       </Paper>
     </main>

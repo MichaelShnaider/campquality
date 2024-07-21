@@ -53,7 +53,7 @@ class PatientSearch extends Component<Props, State> {
   }
 
   sortData = (arr: any[]) => {
-    arr.sort((a, b) => {
+    return [...arr].sort((a, b) => {
       if (this.props.parentPage === SearchParentPageEnum.CHECK_IN) {
         return a.checked_in ? 1 : -1;
       } else if (this.props.parentPage === SearchParentPageEnum.DRUG_ADMIN) {
@@ -119,7 +119,7 @@ class PatientSearch extends Component<Props, State> {
               type="right"
               // theme="twoTone"
               style={{ fontSize: "30px", padding: "15px" }}
-              // twoToneColor="#41e04b"
+            // twoToneColor="#41e04b"
             />
           )}
         </Col>
@@ -251,7 +251,7 @@ class PatientSearch extends Component<Props, State> {
         <Col span={8}>
           <img
             src={camper.img}
-            style={{ height: "75px", width: "75px", borderRadius: "50%" }}
+            style={{ height: "75px", width: "75px", borderRadius: "50%", objectFit: 'cover' }}
           />
         </Col>
         <Col span={12}>
@@ -282,7 +282,7 @@ class PatientSearch extends Component<Props, State> {
       <List
         size="large"
         bordered
-        dataSource={this.state.searchResult}
+        dataSource={this.sortData(this.state.searchResult)}
         renderItem={(camper: CamperType) => (
           <Link to={`${url}/${camper.id}`}>
             <List.Item>{this.renderCamperListItem(camper)}</List.Item>

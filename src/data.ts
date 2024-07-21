@@ -4,7 +4,7 @@ export const camperData = [
   {
     id: 0,
     checked_in: false,
-    img: "http://www.joewigdahl.com/wp-content/uploads/MG_2407-906x640.jpg",
+    img: "https://freerangestock.com/sample/140108/cute-little-girl-at-home-white-background.jpg",
     first_name: "Joan",
     last_name: "Doe",
     gender: "Female",
@@ -428,7 +428,7 @@ export const camperData = [
     checked_in: false,
     img: "https://ak3.picdn.net/shutterstock/videos/1359763/thumb/1.jpg",
     first_name: "Danny",
-    last_name: "Boi",
+    last_name: "Boo",
     gender: "Male",
     date_of_birth: "2018-05-02T00:00:00.000Z",
     medication_given: {

@@ -26,7 +26,7 @@ class CheckIn extends Component<Props, State> {
       <div style={{ textAlign: "center" }}>
         <ButtonAppBar />
         <img
-          src="http://campquality.org/wordpress/wp-content/themes/campquality2016/img/logo_camp-quality.png"
+          src="https://static.wixstatic.com/media/c0f27c_81f3d5efbd2043df9d38a086173d352c~mv2.png/v1/fill/w_324,h_187,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/CQ%20Canada_Logo_Green.png"
           style={{ height: "150px", marginTop: "20px", marginBottom: "20px" }}
         />
         <PatientSearch parentPage={SearchParentPageEnum.CHECK_IN} />
